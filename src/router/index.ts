@@ -1,28 +1,63 @@
+import NotFound404 from '@/modules/common/pages/NotFound404.vue';
 import HomePage from '@/modules/landing/pages/HomePage.vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
+    //Landing
     {
       path: '/',
-      name: 'home',
-      component: HomePage,
+      name: 'panding',
+      component: () => import('@/modules/landing/layouts/LandingLayout.vue'),
+      children: [
+        {
+          path: '/',
+          name: 'home',
+          component: HomePage,
+        },
+        {
+          path: '/feactures',
+          name: 'feactures',
+          component: () => import('@/modules/landing/pages/FeacturesPages.vue'),
+        },
+        {
+          path: '/pricing',
+          name: 'pricing',
+          component: () => import('@/modules/landing/pages/PricingPage.vue'),
+        },
+        {
+          path: '/contact',
+          name: 'contact',
+          component: () => import('@/modules/landing/pages/ContactPage.vue'),
+        },
+      ],
     },
+
+    //Auth
     {
-      path: '/feactures',
-      name: 'feactures',
-      component: () => import('@/modules/landing/pages/FeacturesPages.vue'),
+      path: '/auth',
+      redirect: { name: 'login' },
+      // redirect: 'login',
+      component: () => import('@/modules/auth/layouts/AuthLayout.vue'),
+      children: [
+        {
+          path: 'login',
+          name: 'login',
+          component: () => import('@/modules/auth/pages/LoginPage.vue'),
+        },
+        {
+          path: 'register',
+          name: 'register',
+          component: () => import('@/modules/auth/pages/RegisterPage.vue'),
+        },
+      ],
     },
+
+    //Not Found
     {
-      path: '/pricing',
-      name: 'pricing',
-      component: () => import('@/modules/landing/pages/PricingPage.vue'),
-    },
-    {
-      path: '/contact',
-      name: 'contact',
-      component: () => import('@/modules/landing/pages/ContactPage.vue'),
+      path: '/:pathMatch(.*)*',
+      component: NotFound404,
     },
   ],
 });
