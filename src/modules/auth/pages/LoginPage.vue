@@ -42,6 +42,6 @@
   </form>
   <!-- Sign up  Link -->
   <div class="mt-6 text-blue-500 text-center">
-    <RouterLink to="/register" class="hover:underline">Sign up Here</RouterLink>
+    <RouterLink to="register" class="hover:underline">Sign up Here</RouterLink>
   </div>
 </template>
