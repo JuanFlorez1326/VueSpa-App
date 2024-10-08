@@ -15,6 +15,7 @@
         </div>
 
         <div class="space-x-4">
+          <RouterLink to="/pokemon/1"> Pokemon </RouterLink>
           <RouterLink to="/auth"> Auth </RouterLink>
         </div>
       </nav>
@@ -33,5 +34,3 @@
 </template>
 
 <script lang="ts" setup></script>
-
-<style lang="css" scoped></style>
